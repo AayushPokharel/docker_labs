@@ -1211,7 +1211,7 @@ services:
       app:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost/healthz || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/healthz || exit 1"]
       interval: 10s
       timeout: 3s
       retries: 5
@@ -1261,7 +1261,7 @@ docker compose ps --format 'table {{.Service}}\t{{.Status}}\t{{.Ports}}'
 
 ```bash
 curl -s http://localhost:8080/healthz ; echo
-curl -s -o /dev/null -w 'proxy status: %{http_code}\n' http://localhost:8080/
+curl -s -o /dev/null -w 'proxy status: %{http_code}\n' http://localhost:8080
 curl -sI http://localhost:8080/ | grep -i '^server'
 ```
 
@@ -1326,7 +1326,7 @@ docker compose up -d --build app            # rebuild and replace one service
 docker compose top                          # processes per service
 docker stats --no-stream                    # live resource use
 docker compose events --json                # audit stream of lifecycle events
-```
+wget -qO- http://localhost/```
 
 ### Do this — commit the deliverable
 
